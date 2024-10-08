@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+      :root {
+        --mainBackground: rgb(6, 22, 32);
+        --textColor: rgb(44, 129, 179);
+        --themeColor: rgb(31, 86, 225);
+        --contentColor: rgb(221, 221, 221);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        font-family: "Roboto", sans-serif;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: var(--mainBackground);
+      }
+      .main-wrapper {
+        max-width: 110rem;
+        /* border: solid red; */
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      span {
+        color: var(--themeColor);
+        transition: all ease 0.3s;
+      }
+      a {
+        text-decoration: none;
+      }
+      .logoBox {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .logo {
+        color: var(--contentColor);
+        cursor: pointer;
+      }
+      .logoImg {
+        width: 40px;
+        height: 40px;
+        filter: invert(100%);
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        align-items: center;
+      }
+      .navElements {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .navElements a,
+      .timeSelectTitle {
+        color: var(--contentColor);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        transition: color 0.5s;
+      }
+      .navElements a:hover {
+        color: var(--themeColor);
+      }
+
+      h3 {
+        cursor: default;
+      }
+      #settings,
+      #reset {
+        width: 25px;
+        object-fit: contain;
+        filter: invert(100%);
+      }
+      h2 {
+        color: white;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid white;
+        background-color: #ffffff00;
+        color: #fff;
+        box-sizing: border-box;
+        font-size: 1.2rem;
+        outline: none;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      .message {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 1.1rem;
+        color: #ffffff;
+      }
+      .message a {
+        text-decoration: none;
+        color: cadetblue;
+      }
+      .message a:hover {
+        text-decoration: none;
+        color: rgb(0, 103, 107);
+      }
+      .login-container {
+        width: 40%;
+        align-self: center;
+        margin-top: 3%;
+      }
+      .error-message {
+        color: gray;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="nav">
+        <a href="/">
+          <div class="logoBox">
+            <img src="../Assets/logo.png" alt="" class="logoImg" />
+            <h1 class="logo"><span>Flash</span>Typer</h1>
+          </div>
+        </a>
+
+        <div class="navElements">
+          <a href="/login" id="login">Login</a>
+          <a href="/contact-us" id="login">Contact Us</a>
+          <a href="/settings">
+            <img
+              width="24"
+              height="24"
+              src="https://img.icons8.com/material-sharp/24/settings.png"
+              alt="settings"
+              id="settings"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="login-container">
+        <h2>Login to FlashTyper</h2>
+
+        <% if (typeof error !== 'undefined' && error !== null) { %>
+        <div class="error-message"><%= error %></div>
+        <% } %>
+
+        <form action="/login" method="post">
+          <input type="text" name="userName" placeholder="Username" required />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            required
+          />
+          <input type="submit" value="Login" />
+        </form>
+        <div class="message">
+          Don't have an account? <a href="/signUp">Create One</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

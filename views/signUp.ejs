@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Page</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+      :root {
+        --mainBackground: rgb(6, 22, 32);
+        --textColor: rgb(44, 129, 179);
+        --themeColor: rgb(31, 86, 225);
+        --contentColor: rgb(221, 221, 221);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        font-family: "Roboto", sans-serif;
+        box-sizing: border-box;
+      }
+      .main-wrapper {
+        max-width: 110rem;
+        /* border: solid red; */
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      body {
+        background-color: var(--mainBackground);
+      }
+      span {
+        color: var(--themeColor);
+        transition: all ease 0.3s;
+      }
+      a {
+        text-decoration: none;
+      }
+      .logoBox {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .logo {
+        color: var(--contentColor);
+        cursor: pointer;
+      }
+      .logoImg {
+        width: 40px;
+        height: 40px;
+        filter: invert(100%);
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        align-items: center;
+      }
+      #settings,
+      #reset {
+        width: 25px;
+        object-fit: contain;
+        filter: invert(100%);
+      }
+      .navElements {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .navElements a,
+      .timeSelectTitle {
+        color: var(--contentColor);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        transition: color 0.5s;
+      }
+      .navElements a:hover {
+        color: var(--themeColor);
+      }
+      h2 {
+        color: white;
+      }
+      h3 {
+        cursor: default;
+      }
+      .signup-container {
+        width: 40%;
+        align-self: center;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-bottom: 1px solid white;
+        background-color: #ffffff00;
+        color: #fff;
+        box-sizing: border-box;
+        font-size: 1.2rem;
+        outline: none;
+      }
+      .gender-input {
+        width: 100%;
+        margin: 10px 0;
+        padding: 14px 8px;
+        border-bottom: 1px solid white;
+        box-sizing: border-box;
+        font-size: 1.2rem;
+        display: flex;
+      }
+
+      .gender-input label {
+        color: #636c72;
+        margin-right: 10px;
+      }
+
+      .gender-options {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .gender-options input[type="radio"] {
+        margin-right: 10px;
+      }
+
+      .gender-options label {
+        color: #636c72;
+      }
+
+      input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+
+      .message {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 1.1rem;
+        color: #ffffff;
+      }
+      .message a {
+        text-decoration: none;
+        color: cadetblue;
+      }
+      .message a:hover {
+        text-decoration: none;
+        color: rgb(0, 103, 107);
+      }
+      .error-message {
+        color: gray;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="nav">
+        <a href="/">
+          <div class="logoBox">
+            <img src="../Assets/logo.png" alt="" class="logoImg" />
+            <h1 class="logo"><span>Flash</span>Typer</h1>
+          </div>
+        </a>
+
+        <div class="navElements">
+          <a href="/login" id="login">Login</a>
+          <a href="/contact-us" id="login">Contact Us</a>
+          <a href="/settings">
+            <img
+              width="24"
+              height="24"
+              src="https://img.icons8.com/material-sharp/24/settings.png"
+              alt="settings"
+              id="settings"
+            />
+          </a>
+        </div>
+      </div>
+
+      <div class="signup-container">
+        <h2>Create Account in FlashTyper</h2>
+        <% if (typeof error !== 'undefined' && error !== null) { %>
+        <div class="error-message"><%= error %></div>
+        <% } %>
+        <form action="/signUp" method="post" onsubmit="return validateForm()">
+          <input type="text" name="name" placeholder="Name" required />
+          <input type="text" name="userName" placeholder="Username" required />
+          <input type="email" name="userEmail" placeholder="Email" required />
+          <div class="gender-input">
+            <label for="gender">Gender:</label>
+            <div class="gender-options">
+              <input
+                type="radio"
+                id="male"
+                name="userGender"
+                value="male"
+                required
+              />
+              <label for="male">Male</label>
+              <input
+                type="radio"
+                id="female"
+                name="userGender"
+                value="female"
+                required
+              />
+              <label for="female">Female</label>
+            </div>
+          </div>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            id="password"
+            required
+          />
+          <input
+            type="password"
+            name="confirm_password"
+            placeholder="Re-enter Password"
+            id="confirm_password"
+            required
+          />
+          <input type="submit" value="Signup" />
+        </form>
+        <div class="message">
+          Already have an account? <a href="/login">Log In</a>
+        </div>
+      </div>
+    </div>
+    <script>
+      function validateForm() {
+        let password = document.getElementById("password").value;
+        let confirm_password =
+          document.getElementById("confirm_password").value;
+
+        // Check if password length is at least 8 characters
+        if (password.length < 8) {
+          alert("Password must be at least 8 characters long");
+          return false;
+        }
+
+        // Check if both passwords match
+        if (password !== confirm_password) {
+          alert("Passwords do not match");
+          return false;
+        }
+        return true; // Form will be submitted if all validations pass
+      }
+    </script>
+  </body>
+</html>

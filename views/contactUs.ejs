@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
+
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        font-family: "Roboto", sans-serif;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: var(--mainBackground);
+      }
+      .main-wrapper {
+        max-width: 110rem;
+        /* border: solid red; */
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+      }
+      span {
+        color: var(--flashLogo);
+        transition: all ease 0.3s;
+      }
+      a {
+        text-decoration: none;
+      }
+      .logoBox {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .logo {
+        color: var(--flashLogo);
+        cursor: pointer;
+      }
+      .logoImg {
+        width: 40px;
+        height: 40px;
+        filter: invert(50%);
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        align-items: center;
+      }
+      .navElements {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .navElements a,
+      .timeSelectTitle {
+        color: var(--buttonTxt);
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        transition: color 0.5s;
+      }
+      .navElements a:hover {
+        color: var(--buttonHover);
+      }
+
+      h4 {
+        cursor: default;
+      }
+      #settings,
+      #reset {
+        width: 25px;
+        object-fit: contain;
+        filter: invert(50%);
+      }
+
+      .contactBox {
+        width: 80%;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+      }
+      .info {
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+      }
+      img {
+        height: 40px;
+        width: 40px;
+        filter: invert(50%);
+        /* background-color: white; */
+        border-radius: 10px;
+      }
+      .info1,
+      .info2,
+      .info3 {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .info p {
+        font-size: 1rem;
+        color: var(--buttonTxt);
+      }
+      .box2 p {
+        color: var(--buttonTxt);
+      }
+      .info h4 {
+        color: var(--flashLogo);
+      }
+      .box1,
+      .box2 {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 30px;
+      }
+      .box1 h1,
+      .box2 h1 {
+        color: var(--flashLogo);
+        font-weight: 400;
+        font-size: 2rem;
+      }
+      .box1 form {
+        display: flex;
+        gap: 1.2rem;
+        flex-direction: column;
+      }
+      .box1 form input {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid var(--flashLogo);
+        padding: 10px 3px;
+        padding-bottom: 15px;
+        color: var(--buttonTxt);
+        font-weight: bold;
+        font-size: 1rem;
+      }
+      .box1 form input:focus {
+        outline: none;
+      }
+      .box1 form input::placeholder,
+      form textarea::placeholder {
+        color: var(--buttonTxt);
+        font-weight: bold;
+      }
+      .box1 form textarea {
+        background-color: transparent;
+        border: none;
+        border-bottom: 1px solid var(--flashLogo);
+        padding: 10px 3px;
+        padding-bottom: 15px;
+        color: var(--buttonTxt);
+        font-weight: bold;
+        font-size: 1rem;
+        height: 10rem;
+        resize: none;
+      }
+
+      .box1 form textarea:focus {
+        outline: none;
+      }
+      .myBtn {
+        display: flex;
+        width: fit-content;
+        background-color: transparent;
+        padding: 0.5rem 0;
+        color: var(--buttonTxt);
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid var(--buttonHover);
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 1.2rem;
+      }
+      .myBtn:hover {
+        color: var(--buttonHover);
+      }
+
+      .box1 {
+        width: 40%;
+        border-right: 2px solid var(--flashLogo);
+      }
+      .box2 {
+        background-color: transparent;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="nav">
+        <a href="/">
+          <div class="logoBox">
+            <img src="../Assets/logo.png" alt="" class="logoImg" />
+            <h1 class="logo"><span>Flash</span>Typer</h1>
+          </div>
+        </a>
+
+        <div class="navElements">
+          <% if (user){ %>
+          <a href="/profile" id="userProfile">Profile</a>
+          <a href="/logout" id="logout">Logout</a>
+          <% } else { %>
+          <a href="/login" id="login">Login</a>
+          <% } %>
+          <a href="/contact-us" id="login">Contact Us</a>
+          <a href="/settings">
+            <img
+              width="24"
+              height="24"
+              src="https://img.icons8.com/material-sharp/24/settings.png"
+              alt="settings"
+              id="settings"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="contactBox">
+        <div
+          id="messageSentAlert"
+          class="alert alert-success"
+          role="alert"
+          style="display: none"
+        >
+          Message sent successfully!
+        </div>
+
+        <!-- Your form -->
+        <div class="box1">
+          <h1>Write Us</h1>
+          <form action="/contactUs" method="post">
+            <input
+              type="text"
+              name="contactName"
+              placeholder="Enter Your Name"
+              required
+            />
+            <input
+              type="email"
+              name="contactEmail"
+              placeholder="Enter Your Email"
+              required
+            />
+            <textarea
+              name="contactMessage"
+              placeholder="Say something..."
+              noresize
+            ></textarea>
+            <button class="myBtn" type="submit">Send Message</button>
+          </form>
+        </div>
+        <div class="box2">
+          <h1>Contact Info</h1>
+          <p>We're open for any suggestions/improvements</p>
+          <div class="info">
+            <div class="info1">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios-filled/50/address--v1.png"
+                alt="address--v1"
+              />
+              <h4>Address:</h4>
+              <p>Hyderabad, Telengana, India</p>
+            </div>
+            <div class="info2">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/apple-phone.png"
+                alt="apple-phone"
+              />
+              <h4>Phone:</h4>
+              <p>8317664801</p>
+              <p>7993598262</p>
+            </div>
+            <div class="info3">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/new-post--v1.png"
+                alt="new-post--v1"
+              />
+              <h4>Email:</h4>
+              <p>devallies318@gmail.com</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const savedPreferences = localStorage.getItem("preferences")
+    const preferences = JSON.parse(savedPreferences)
+
+    const themes = {
+      1: {
+        "--flashLogo": "rgb(180, 244, 250)",
+        "--mainBackground": "#030613",
+        "--wordsTxt": "#4fcdb9",
+        "--buttonTxt": "#3a6c97",
+        "--buttonHover": "#fff",
+      },
+      2: {
+        "--flashLogo": "#ffffff",
+        "--mainBackground": "#000000",
+        "--wordsTxt": "#d0d0d0",
+        "--buttonTxt": "#ffffff",
+        "--buttonHover": "#737373",
+      },
+      3: {
+        "--flashLogo": "#d1ffcd",
+        "--mainBackground": "#000000",
+        "--wordsTxt": "#15ff00",
+        "--buttonTxt": "#006500",
+        "--buttonHover": "#d1ffcd",
+      },
+      4: {
+        "--flashLogo": "#ffffff",
+        "--mainBackground": "#0e0e0e",
+        "--wordsTxt": "#db9730",
+        "--buttonTxt": "#555555",
+        "--buttonHover": "#c6c6c6",
+      },
+      5: {
+        "--flashLogo": "#444444",
+        "--mainBackground": "#ffffff",
+        "--wordsTxt": "#444444",
+        "--buttonTxt": "#898787",
+        "--buttonHover": "#444444",
+      },
+      6: {
+        "--flashLogo": "#ffa7a7",
+        "--mainBackground": "#240000",
+        "--wordsTxt": "#ea514b",
+        "--buttonTxt": "#f36f6f",
+        "--buttonHover": "#ffffff",
+      },
+    }
+    let theme = preferences.theme
+    const selectedTheme = themes[theme]
+    const root = document.documentElement
+    for (const [property, value] of Object.entries(selectedTheme)) {
+      root.style.setProperty(property, value)
+    }
+  </script>
+</html>
