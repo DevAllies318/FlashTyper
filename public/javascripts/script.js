@@ -7,7 +7,7 @@ let timer;
 const reset = document.getElementById("reset");
 const input = document.querySelector("#userTxt");
 const transparentBox = document.querySelector("#transparentBox");
-let time = 15;
+let time = 30;
 let timeToStartWith = time;
 let timeTaken = 0;
 let started = false;
