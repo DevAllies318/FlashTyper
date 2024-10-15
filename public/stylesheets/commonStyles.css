@@ -347,3 +347,34 @@ img {
 ::-webkit-scrollbar {
   display: none;
 }
+.mobile-message {
+  display: none;
+}
+/* Media query for mobile devices */
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+  /* Hide the entire content of the website */
+  body > * {
+    display: none;
+  }
+
+  /* Display a message for mobile users */
+  .mobile-message {
+    display: flex;
+    flex-direction: column;
+    font-size: 18px;
+    color: #6cc9d3;
+    /* text-align: ; */
+    gap: 20px;
+    margin-top: 50vh;
+    padding: 50px;
+    transform: translateY(-50%);
+  }
+
+  .mobile-message a {
+    color: #0073b1; /* LinkedIn blue color */
+    margin: 0;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
