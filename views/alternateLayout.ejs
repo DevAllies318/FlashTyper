@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlashTyper</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Charm|Cinzel|Spicy Rice|Cormorant Upright|Amita|Special Elite|Cutive Mono"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../stylesheets/commonStyles.css" />
+    <style>
+      #userTxt {
+        border: none;
+        background-color: transparent;
+        font-size: 1.5rem;
+        padding: 7px;
+        outline: none;
+        border: none;
+        color: var(--wordsTxt);
+        border-bottom: 1px solid var(--wordsTxt);
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="nav">
+        <button onclick="window.location.href='/'" class="toBeDisabled">
+          <div class="logoBox">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+              fill="#e8eaed"
+              class="logoImg"
+            >
+              <path
+                d="M280-280v-80h400v80H280ZM120-440v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM120-600v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Z"
+              />
+            </svg>
+            <h1 class="logo"><span>Flash</span>Typer</h1>
+          </div>
+        </button>
+
+        <div class="navElements">
+          <% if (user){ %>
+          <button
+            onclick="window.location.href='/profile'"
+            id="userProfile"
+            class="toBeDisabled"
+          >
+            Profile
+          </button>
+          <button
+            onclick="window.location.href='/logout'"
+            id="logOut"
+            class="toBeDisabled"
+          >
+            Logout
+          </button>
+          <% } else { %>
+          <button
+            onclick="window.location.href='/login'"
+            id="login"
+            class="toBeDisabled"
+          >
+            Login
+          </button>
+          <% } %>
+          <button
+            onclick="window.location.href='/contact-us'"
+            class="toBeDisabled"
+          >
+            Contact Us
+          </button>
+          <button
+            onclick="window.location.href='/settings'"
+            class="toBeDisabled"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="30px"
+              width="25px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#e8eaed"
+              id="settings"
+            >
+              <path
+                d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="main">
+        <div class="timeSelect">
+          <h3>Time:</h3>
+          <input
+            type="button"
+            class="uncheck toBeDisabled"
+            value="15"
+            id="time15"
+          />
+          <input
+            type="button"
+            class="uncheck toBeDisabled"
+            value="30"
+            id="time30"
+          />
+          <input
+            type="button"
+            class="uncheck toBeDisabled"
+            value="60"
+            id="time60"
+          />
+          <input
+            type="button"
+            class="uncheck toBeDisabled"
+            value="120"
+            id="time120"
+          />
+          <input type="number" id="chooseTime" placeholder="Custom" />
+          <button id="timeOkBtn" class="toBeDisabled">OK</button>
+        </div>
+        <div id="textBox">
+          <div id="timerTxt"></div>
+          <div id="sourceTxt" oncopy="return false"></div>
+          <input
+            type="text"
+            id="userTxt"
+            autocomplete="off"
+            oncut="alert(`Refrain From Malpractice`); return false"
+            onpaste="alert(`Refrain From Malpractice`); return false"
+            oncopy="alert(`Refrain From Malpractice`); return false"
+          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="40px"
+            width="40px"
+            viewBox="0 -960 960 960"
+            fill="#e8eaed"
+            id="reset"
+          >
+            <path
+              d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"
+            />
+          </svg>
+        </div>
+        <div class="options">
+          <button id="customWordsBtn" class="toBeDisabled">Custom Words</button>
+          <button
+            onclick="window.location.href='/leaderBoard'"
+            id="leaderBoardBtn"
+            class="toBeDisabled"
+          >
+            Leader Board
+          </button>
+          <form action="/layout1" method="post">
+            <button type="submit" id="changeLayoutBtn" class="toBeDisabled">
+              Change Layout
+            </button>
+          </form>
+        </div>
+      </div>
+      <div id="resultPage">
+        <h1>RESULTS:</h1>
+        <div class="resultValues">
+          <div>
+            <span>Words Per Minute (WPM):</span>
+            <span class="calculations"></span>
+          </div>
+          <div><span>Accuracy: </span> <span class="calculations"></span></div>
+          <div>
+            <span>Words Typed: </span> <span class="calculations"></span>
+          </div>
+          <div>
+            <span>Correctly Typed: </span> <span class="calculations"></span>
+          </div>
+          <div>
+            <span>Incorrectly Typed: </span> <span class="calculations"></span>
+          </div>
+          <div>
+            <span>Time Taken: </span> <span class="calculations"></span>
+          </div>
+        </div>
+        <button id="resultOkBtn">OK</button>
+      </div>
+      <div id="transparentBox"></div>
+      <div id="customWordsBox">
+        <div class="customWordsHeader">
+          <p>
+            Enter space separated words (No numbers or special characters)<br />Max
+            Limit: 1000 words
+          </p>
+          <svg
+            id="customX_Btn"
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 -960 960 960"
+            width="24px"
+            fill="#e8eaed"
+          >
+            <path
+              d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
+            />
+          </svg>
+        </div>
+        <textarea id="customWords" autocomplete="off"></textarea>
+        <button id="TextBtn" class="toBeDisabled">OK</button>
+      </div>
+    </div>
+    <script src="../javascripts/alternateScript.js"></script>
+  </body>
+</html>

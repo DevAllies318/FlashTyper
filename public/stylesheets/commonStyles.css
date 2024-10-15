@@ -1,0 +1,349 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+:root {
+  --flashLogo: rgb(180, 244, 250);
+  --mainBackground: #030613;
+  --wordsTxt: #4fcdb9;
+  --buttonTxt: #3a6c97;
+  --buttonHover: #fff;
+  --profileCard: white;
+}
+.main-wrapper {
+  max-width: 110rem;
+  margin: auto;
+}
+body {
+  background-color: var(--mainBackground);
+}
+span {
+  color: var(--flashLogo);
+  transition: all ease 0.3s;
+}
+a {
+  text-decoration: none;
+}
+.logoBox {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.logo {
+  color: var(--flashLogo);
+  cursor: pointer;
+}
+.logoImg {
+  width: 60px;
+  height: 60px;
+  fill: var(--flashLogo);
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+}
+.navElements {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+h3 {
+  cursor: default;
+}
+.main {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  padding: 20px;
+  justify-content: space-between;
+}
+#timerTxt {
+  display: flex;
+  font-size: 3rem;
+  color: var(--flashLogo);
+  font-weight: bold;
+  letter-spacing: 1px;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+}
+.timeSelect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  width: 300px;
+}
+.uncheck {
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: var(--buttonTxt);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#chooseTime {
+  border-radius: 0;
+  width: 60px;
+  padding: 5px;
+  font-size: 1.4rem;
+  outline: none;
+  text-align: center;
+  border: none;
+  font-weight: 400;
+  border-bottom: 2px solid var(--flashLogo);
+  background-color: transparent;
+  color: var(--buttonTxt);
+}
+
+.uncheck:hover {
+  color: var(--buttonHover);
+}
+.uncheck.check {
+  color: var(--buttonHover);
+}
+
+#timeOkBtn {
+  cursor: pointer;
+  padding: 10px;
+  font-weight: bold;
+  background-color: transparent;
+  color: var(--buttonTxt);
+  outline: none;
+  border: none;
+  border-radius: 150px;
+  font-size: 1.5rem;
+  transition: color 0.3s, cursor 2s;
+}
+#timeOkBtn:hover {
+  color: var(--buttonHover);
+}
+
+.timeSelect h3 {
+  color: var(--buttonTxt);
+  margin-bottom: 10px;
+  vertical-align: middle;
+}
+svg {
+  fill: var(--buttonTxt);
+  transition: all ease 0.3s;
+  cursor: pointer;
+}
+#settings {
+  fill: var(--buttonTxt);
+}
+#settings:hover {
+  fill: var(--buttonHover);
+}
+/* Remove arrows from input box */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.timeSelect input::placeholder {
+  font-size: 0.8rem;
+  color: var(--buttonTxt);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 20px 10px;
+  width: 300px;
+}
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--buttonTxt);
+  font-size: 1rem;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+.navElements button {
+  font-size: 1.2rem;
+}
+button:hover {
+  color: var(--buttonHover);
+}
+#textBox {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+#sourceTxt {
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  height: 10rem;
+  overflow: hidden;
+  width: 95%;
+  scroll-behavior: smooth;
+  height: 200px;
+}
+#sourceTxt::-webkit-scrollbar {
+  display: none;
+}
+
+#sourceTxt .word {
+  color: var(--wordsTxt);
+  font-weight: 400;
+  border-bottom: solid transparent;
+  margin: 7px;
+}
+
+img {
+  cursor: pointer;
+}
+
+#resultPage {
+  position: fixed;
+  top: 14%;
+  bottom: 14%;
+  left: 20%;
+  right: 20%;
+  z-index: 100;
+  border-radius: 10px;
+  background-color: var(--mainBackground);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 50px;
+  display: none;
+}
+
+.animation1 {
+  animation: popUp 0.3s ease forwards;
+}
+.animation2 {
+  animation: popDown 0.3s ease forwards;
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0%);
+  }
+  to {
+    transform: scale(100%);
+  }
+}
+@keyframes popDown {
+  from {
+    transform: scale(100%);
+  }
+  to {
+    transform: scale(0%);
+  }
+}
+#transparentBox {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+}
+
+#resultPage h1 {
+  align-self: center;
+  color: var(--flashLogo);
+  font-weight: bold;
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.resultValues {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.resultValues div {
+  display: flex;
+  gap: 100px;
+  justify-content: space-between;
+}
+#resultOkBtn,
+#TextBtn {
+  align-self: center;
+  margin-top: 15px;
+  padding: 7px 14px;
+  font-weight: 700;
+  font-size: 1.4rem;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  color: var(--flashLogo);
+}
+#resultOkBtn:hover,
+#TextBtn:hover {
+  color: var(--buttonHover);
+}
+#customX_Btn {
+  fill: var(--flashLogo);
+}
+#customWordsBox {
+  position: fixed;
+  top: 14%;
+  bottom: 14%;
+  left: 15%;
+  right: 15%;
+  border-radius: 10px;
+  background-color: var(--mainBackground);
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  display: none;
+  font-size: 1.5rem;
+  color: var(--flashLogo);
+  font-weight: bold;
+  transition: all ease 1s;
+}
+.customWordsHeader {
+  display: flex;
+  justify-content: space-between;
+}
+.customWordsHeader img {
+  filter: invert(50%);
+}
+#customWordsBox p {
+  margin-bottom: 20px;
+}
+
+#customWords {
+  font-weight: bold;
+  height: 90%;
+  background-color: transparent;
+  color: var(--wordsTxt);
+  border: 1px solid var(--flashLogo);
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 1.5rem;
+  resize: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}

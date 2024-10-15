@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto|Charm|Cinzel|Spicy Rice|Cormorant Upright|Amita|Special Elite|Cutive Mono"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <style>
+      :root {
+        --flashLogo: "rgb(180, 244, 250)";
+        --mainBackground: "#030613";
+        --wordsTxt: "#4fcdb9";
+        --buttonTxt: "#3a6c97";
+        --buttonHover: "#fff";
+        --profileCard: "white";
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        box-sizing: border-box;
+        color: var(--flashLogo);
+      }
+
+      .main-wrapper {
+        max-width: 110rem;
+        margin: auto;
+      }
+      body {
+        background-color: var(--mainBackground);
+      }
+
+      a {
+        text-decoration: none;
+      }
+      .logoImg {
+        width: 60px;
+        height: 60px;
+        fill: var(--flashLogo);
+      }
+
+      .logoBox {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      span,
+      .logo {
+        color: var(--flashLogo);
+        cursor: pointer;
+      }
+      .logoImg {
+        border-radius: 0px;
+      }
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px;
+        align-items: center;
+      }
+      .navElements {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+      }
+      .toBeDisabled {
+        color: var(--buttonTxt);
+      }
+
+      h4 {
+        cursor: default;
+      }
+      .card {
+        background-color: var(--mainBackground);
+      }
+      .card-body {
+        border: 1px solid var(--buttonTxt);
+      }
+      th,
+      td,
+      li {
+        background-color: var(--mainBackground) !important;
+        color: var(--buttonTxt) !important;
+      }
+      .myBtn {
+        color: var(--buttonTxt);
+        border: none;
+        font-size: 1.2rem;
+        padding: 0.3rem 1.5rem;
+        border-radius: 15px;
+        transition: all ease 0.3s;
+      }
+      .myBtn:hover {
+        color: var(--buttonHover);
+      }
+      button {
+        border: none;
+        outline: none;
+        background-color: transparent;
+        font-size: 1.2rem;
+        padding: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-bottom: 8px;
+        font-weight: bold;
+        transition: color 0.3s, color 0.3s;
+      }
+      .nav button:hover {
+        color: var(--buttonHover);
+      }
+      .my-3,
+      .mb-5,
+      .mb-4 {
+        color: var(--flashLogo);
+      }
+      svg {
+        fill: var(--flashLogo);
+        transition: all ease 0.3s;
+        cursor: pointer;
+      }
+      #settings {
+        fill: var(--buttonTxt);
+      }
+      #settings:hover {
+        fill: var(--buttonHover);
+      }
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <div class="nav">
+        <button onclick="window.location.href='/'" class="toBeDisabled">
+          <div class="logoBox">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 -960 960 960"
+              fill="#e8eaed"
+              class="logoImg"
+            >
+              <path
+                d="M280-280v-80h400v80H280ZM120-440v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM120-600v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80Z"
+              />
+            </svg>
+            <h1 class="logo"><span>Flash</span>Typer</h1>
+          </div>
+        </button>
+
+        <div class="navElements">
+          <button
+            onclick="window.location.href='/profile'"
+            id="userProfile"
+            class="toBeDisabled"
+          >
+            Profile
+          </button>
+          <button
+            onclick="window.location.href='/logout'"
+            id="logout"
+            class="toBeDisabled"
+          >
+            Logout
+          </button>
+          <button
+            onclick="window.location.href='/contact-us'"
+            class="toBeDisabled"
+          >
+            Contact Us
+          </button>
+          <button
+            onclick="window.location.href='/settings'"
+            class="toBeDisabled"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="30px"
+              width="25px"
+              viewBox="0 -960 960 960"
+              width="24px"
+              fill="#e8eaed"
+              id="settings"
+            >
+              <path
+                d="m370-80-16-128q-13-5-24.5-12T307-235l-119 50L78-375l103-78q-1-7-1-13.5v-27q0-6.5 1-13.5L78-585l110-190 119 50q11-8 23-15t24-12l16-128h220l16 128q13 5 24.5 12t22.5 15l119-50 110 190-103 78q1 7 1 13.5v27q0 6.5-2 13.5l103 78-110 190-118-50q-11 8-23 15t-24 12L590-80H370Zm70-80h79l14-106q31-8 57.5-23.5T639-327l99 41 39-68-86-65q5-14 7-29.5t2-31.5q0-16-2-31.5t-7-29.5l86-65-39-68-99 42q-22-23-48.5-38.5T533-694l-13-106h-79l-14 106q-31 8-57.5 23.5T321-633l-99-41-39 68 86 64q-5 15-7 30t-2 32q0 16 2 31t7 30l-86 65 39 68 99-42q22 23 48.5 38.5T427-266l13 106Zm42-180q58 0 99-41t41-99q0-58-41-99t-99-41q-59 0-99.5 41T342-480q0 58 40.5 99t99.5 41Zm-2-140Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <section>
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4" style="height: 55%">
+                <div class="card-body text-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="150px"
+                    width="150px"
+                    viewBox="0 -960 960 960"
+                    fill="#e8eaed"
+                  >
+                    <path
+                      d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z"
+                    />
+                  </svg>
+                  <h1 class="my-3"><%= user.name %></h1>
+                  <h3 class="my-3"><%= user.userName %></h3>
+                  <h4 class="my-3">
+                    Joined <%= new
+                    Date(user.dateOfJoining).toLocaleDateString('en-US', { year:
+                    'numeric', month: 'long', day: 'numeric' }) %>
+                  </h4>
+                  <h4 class="mb-5">
+                    Rank <%= userInfo.info[6] === 0 ? '- ?' :userInfo.info[6] %>
+                  </h4>
+                </div>
+              </div>
+              <div class="card mb-4 mb-lg-0">
+                <div class="card-body">
+                  <h5 class="mb-4">Time wise Data</h5>
+                  <table class="table table-bordered">
+                    <thead class="thead">
+                      <tr>
+                        <th scope="col">Spec/Time</th>
+                        <th scope="col">15s</th>
+                        <th scope="col">30s</th>
+                        <th scope="col">60s</th>
+                        <th scope="col">120s</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">Best WPM</th>
+                        <td><%=userInfo.timeWiseData[0][0]%></td>
+                        <td><%=userInfo.timeWiseData[1][0]%></td>
+                        <td><%=userInfo.timeWiseData[2][0]%></td>
+                        <td><%=userInfo.timeWiseData[3][0]%></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Average WPM</th>
+                        <td><%=userInfo.timeWiseData[0][1]%></td>
+                        <td><%=userInfo.timeWiseData[1][1]%></td>
+                        <td><%=userInfo.timeWiseData[2][1]%></td>
+                        <td><%=userInfo.timeWiseData[3][1]%></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Accuracy</th>
+                        <td><%=userInfo.timeWiseData[0][2]%></td>
+                        <td><%=userInfo.timeWiseData[1][2]%></td>
+                        <td><%=userInfo.timeWiseData[2][2]%></td>
+                        <td><%=userInfo.timeWiseData[3][2]%></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Name</p>
+                    </div>
+                    <div class="col-sm-5">
+                      <!-- <p class="mb-0"><%=userInfo.user.name%></p> -->
+                      <p class="mb-0"><%=user.name%></p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">username</p>
+                    </div>
+                    <div class="col-sm-5">
+                      <p class="mb-0"><%=user.userName%></p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Email</p>
+                    </div>
+                    <div class="col-sm-5">
+                      <p class="mb-0"><%=user.userEmail%></p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Gender</p>
+                    </div>
+                    <div class="col-sm-5">
+                      <p class="mb-0"><%=user.userGender%></p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-sm-5">
+                      <p class="mb-0">Password</p>
+                    </div>
+                    <div class="col-sm-5">
+                      <p class="mb-0">********</p>
+                    </div>
+                    <div class="col-sm-2"></div>
+                  </div>
+                  <a class="myBtn float-end" href="/settings" role="button"
+                    >Edit</a
+                  >
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body">
+                      <h5 class="mb-4">Last 5 Tests Data</h5>
+                      <table class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">WPM</th>
+                            <th scope="col">Accuracy</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Date</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><%=userInfo.last5Tests[0][0]%></td>
+                            <td><%=userInfo.last5Tests[0][1]%></td>
+                            <td><%=userInfo.last5Tests[0][2]%></td>
+                            <td><%=userInfo.last5Tests[0][3]%></td>
+                          </tr>
+                          <tr>
+                            <td><%=userInfo.last5Tests[1][0]%></td>
+                            <td><%=userInfo.last5Tests[1][1]%></td>
+                            <td><%=userInfo.last5Tests[1][2]%></td>
+                            <td><%=userInfo.last5Tests[1][3]%></td>
+                          </tr>
+                          <tr>
+                            <td><%=userInfo.last5Tests[2][0]%></td>
+                            <td><%=userInfo.last5Tests[2][1]%></td>
+                            <td><%=userInfo.last5Tests[2][2]%></td>
+                            <td><%=userInfo.last5Tests[2][3]%></td>
+                          </tr>
+                          <tr>
+                            <td><%=userInfo.last5Tests[3][0]%></td>
+                            <td><%=userInfo.last5Tests[3][1]%></td>
+                            <td><%=userInfo.last5Tests[3][2]%></td>
+                            <td><%=userInfo.last5Tests[3][3]%></td>
+                          </tr>
+                          <tr>
+                            <td><%=userInfo.last5Tests[4][0]%></td>
+                            <td><%=userInfo.last5Tests[4][1]%></td>
+                            <td><%=userInfo.last5Tests[4][2]%></td>
+                            <td><%=userInfo.last5Tests[4][3]%></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body p-0">
+                      <ul class="list-group list-group-flush rounded-3">
+                        <li
+                          class="list-group-item d-flex justify-content-start align-items-center p-3"
+                        >
+                          <h5 class="mr-5 mb-0">Highest WPM:</h5>
+                          &nbsp;
+                          <h5 class="mb-0"><%=userInfo.info[0]%></h5>
+                        </li>
+                        <li
+                          class="list-group-item d-flex justify-content-start align-items-center p-3"
+                        >
+                          <h5 class="mr-5 mb-0">Average WPM:</h5>
+                          &nbsp;
+                          <h5 class="mb-0"><%=userInfo.info[1]%></h5>
+                        </li>
+                        <li
+                          class="list-group-item d-flex justify-content-start align-items-center p-3"
+                        >
+                          <h5 class="mr-5 mb-0">Average Accuracy:</h5>
+                          &nbsp;
+                          <h5 class="mb-0"><%=userInfo.info[2]%></h5>
+                        </li>
+
+                        <li
+                          class="list-group-item d-flex justify-content-start align-items-center p-3"
+                        >
+                          <h5 class="mr-5 mb-0">Number of tests started:</h5>
+                          &nbsp;
+                          <h5 class="mb-0"><%=userInfo.info[3]%></h5>
+                        </li>
+                        <li
+                          class="list-group-item d-flex justify-content-start align-items-center p-3"
+                        >
+                          <h5 class="mr-5 mb-0">Number of tests completed:</h5>
+                          &nbsp;
+                          <h5 class="mb-0"><%=userInfo.info[4]%></h5>
+                        </li>
+                        <li
+                          class="list-group-item d-flex justify-content-start align-items-center p-3"
+                        >
+                          <h5 class="mr-5 mb-0">Time spent on typing:</h5>
+                          &nbsp;
+                          <h5 class="mb-0"><%=userInfo.info[5]%>s</h5>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+  <script>
+    const savedPreferences = localStorage.getItem("preferences");
+    const preferences = JSON.parse(savedPreferences);
+
+    const themes = {
+      1: {
+        "--flashLogo": "rgb(180, 244, 250)",
+        "--mainBackground": "#030613",
+        "--wordsTxt": "#4fcdb9",
+        "--buttonTxt": "#3a6c97",
+        "--buttonHover": "#fff",
+      },
+      2: {
+        "--flashLogo": "#ffffff",
+        "--mainBackground": "#000000",
+        "--wordsTxt": "#d0d0d0",
+        "--buttonTxt": "#ffffff",
+        "--buttonHover": "#737373",
+      },
+      3: {
+        "--flashLogo": "#d1ffcd",
+        "--mainBackground": "#000000",
+        "--wordsTxt": "#15ff00",
+        "--buttonTxt": "#006500",
+        "--buttonHover": "#d1ffcd",
+      },
+      4: {
+        "--flashLogo": "#ffffff",
+        "--mainBackground": "#0e0e0e",
+        "--wordsTxt": "#db9730",
+        "--buttonTxt": "#555555",
+        "--buttonHover": "#c6c6c6",
+      },
+      5: {
+        "--flashLogo": "#444444",
+        "--mainBackground": "#ffffff",
+        "--wordsTxt": "#444444",
+        "--buttonTxt": "#898787",
+        "--buttonHover": "#444444",
+      },
+      6: {
+        "--flashLogo": "#ffa7a7",
+        "--mainBackground": "#240000",
+        "--wordsTxt": "#ea514b",
+        "--buttonTxt": "#f36f6f",
+        "--buttonHover": "#ffffff",
+      },
+    };
+    let theme = preferences.theme;
+    const selectedTheme = themes[theme];
+    const root = document.documentElement;
+    for (const [property, value] of Object.entries(selectedTheme)) {
+      root.style.setProperty(property, value);
+    }
+  </script>
+</html>
