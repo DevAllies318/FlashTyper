@@ -1,4 +1,4 @@
-:let currentUser = undefined;
+let currentUser = undefined;
 let testEnded = false;
 let test = undefined;
 let handleKeyDown;
