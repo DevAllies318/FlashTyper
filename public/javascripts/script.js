@@ -1,4 +1,4 @@
-let currentUser = undefined;
+:let currentUser = undefined;
 let testEnded = false;
 let test = undefined;
 let handleKeyDown;
@@ -97,7 +97,7 @@ const defaultPreferences = {
   keyHitSound: false,
   preferCustomWords: false,
   customWords: [],
-  preferTime: 3,
+  preferTime: 30,
 };
 
 async function fetchUserInfo() {
