@@ -148,7 +148,7 @@ function main() {
   //function to shuffle given words
   function shuffle(wordss) {
     //online algorithm to shuffle
-    // wordss.sort(() => Math.random() - 0.5);
+    wordss.sort(() => Math.random() - 0.5);
     return wordss;
   }
 
