@@ -63,7 +63,6 @@ const checkAuth = (req, res, next) => {
         res.clearCookie("Token");
         return res.redirect("/login");
       }
-
       req.user = decoded.user;
     });
   }
@@ -76,7 +75,7 @@ app.get("/", checkAuth, async (req, res) => {
   let currentUser =
     req.user &&
     (await userModel.findOne({
-      userName: req.user.userName,
+      userName: req.user,
     }));
 
   if (layout == 1) {
@@ -109,7 +108,6 @@ app.get("/signup", checkAuth, (req, res) => {
 // Updates the ranks of users in DB
 async function updateUserRanks() {
   let allUsers = await userModel.find();
-  console.log("got all users");
   try {
     let userWPMs = {};
     allUsers.forEach((user) => {
@@ -132,9 +130,7 @@ async function updateUserRanks() {
         user.rank = rank;
         rank++;
       }
-      console.log("saved user ranks", user.rank);
       await user.save();
-      console.log("current user rank: ", user.rank);
     }
   } catch (error) {
     console.log("Error updating user rank", error);
@@ -148,7 +144,7 @@ app.get("/profile", checkAuth, async (req, res) => {
   }
 
   const currentUser = await userModel.findOne({
-    userName: req.user.userName,
+    userName: req.user,
   });
 
   if (!currentUser) {
@@ -245,7 +241,7 @@ app.get("/profile", checkAuth, async (req, res) => {
 
   try {
     await updateUserRanks();
-    let user = await userModel.findOne({ userName: req.user.userName });
+    let user = await userModel.findOne({ userName: req.user });
 
     const profileObject = {
       user: user, // Use the updated user object
@@ -279,7 +275,7 @@ app.get("/settings", checkAuth, async (req, res) => {
   };
   if (req.user) {
     currentUser = await userModel.findOne({
-      userName: req.user.userName,
+      userName: req.user,
     });
   }
   res.render("settings", { user: currentUser });
@@ -297,7 +293,7 @@ app.get("/leaderBoard", checkAuth, async (req, res) => {
   };
   if (req.user) {
     currentUser = await userModel.findOne({
-      userName: req.user.userName,
+      userName: req.user,
     });
   }
   let dataToReturn;
@@ -383,7 +379,7 @@ app.post("/login", async (req, res) => {
 
     const match = await bcrypt.compare(req.body.password, user.password);
     if (match) {
-      const token = jwt.sign({ user: user }, process.env.JWT_SECRET);
+      const token = jwt.sign({ user: user.userName }, process.env.JWT_SECRET);
       res.cookie("Token", token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
@@ -437,7 +433,7 @@ app.post("/signUp", async (req, res) => {
             preferences: [],
           });
 
-          let token = jwt.sign({ user: createdUser }, process.env.JWT_SECRET);
+          let token = jwt.sign({ user: userName }, process.env.JWT_SECRET);
           res.cookie("Token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
@@ -449,14 +445,13 @@ app.post("/signUp", async (req, res) => {
       res.send("Uh Oh! Something Went Wrong");
     }
   });
-
 });
 app.get("/api", checkAuth, async (req, res) => {
   if (!req.user) {
     return res.status(401).json({ error: "Unautorized" });
   }
   const currentUser = await userModel.findOne({
-    userName: req.user.userName,
+    userName: req.user,
   });
   if (!currentUser) {
     return res.status(404).json({ error: "user not found" });
@@ -476,7 +471,6 @@ app.post("/api", async (req, res) => {
     } else {
       user.testsStarted++;
     }
-    // console.log("tf65f5f", req.body.test.timeTaken);
     user.timeSpentTyping += req.body.test.timeTaken;
     user.save();
     res.status(200);
@@ -530,7 +524,7 @@ app.post("/saveInfo", async (req, res) => {
 
 app.post("/delAcc", checkAuth, async (req, res) => {
   const currentUser = await userModel.findOne({
-    userName: req.user.userName,
+    userName: req.user,
   });
 
   try {
@@ -630,5 +624,5 @@ app.use((err, req, res, next) => {
 
 // Listening on Port
 app.listen(3000, () => {
-  console.log("server started on port 3000");
+  console.log("server started");
 });
