@@ -280,70 +280,84 @@ app.get("/settings", checkAuth, async (req, res) => {
   }
   res.render("settings", { user: currentUser });
 });
-
 app.get("/leaderBoard", checkAuth, async (req, res) => {
   if (!req.user) {
     return res.redirect("/login");
   }
+
   let currentUser = {
     name: null,
     userName: null,
     userEmail: null,
     password: null,
   };
+
   if (req.user) {
-    currentUser = await userModel.findOne({
-      userName: req.user,
-    });
+    currentUser = await userModel.findOne({ userName: req.user });
   }
+
   let dataToReturn;
-  let time15 = [];
-  let time30 = [];
-  let time60 = [];
-  let time120 = [];
+  let time15 = new Map();
+  let time30 = new Map();
+  let time60 = new Map();
+  let time120 = new Map();
+
   const allUsers = await userModel.find();
+
   allUsers.forEach((user) => {
     if (user.tests.length > 0) {
       const userTests = user.tests;
       userTests.forEach((test) => {
-        let temp = [];
         let uName = user.userName;
+        if (user.userName == currentUser.userName) {
+          uName = user.userName + " (You)";
+        }
+
+        let temp = [test.wpm, uName, test.date, test.accuracy];
+
+        // Update only if this WPM is higher than the previous best for this user
         if (test.timeTaken == 15) {
-          if (user.userName == currentUser.userName) {
-            uName = user.userName + " (You)";
+          if (
+            !time15.has(user.userName) ||
+            test.wpm > time15.get(user.userName)[0]
+          ) {
+            time15.set(user.userName, temp);
           }
-          temp.push(test.wpm, uName, test.date, test.accuracy);
-          time15.push(temp);
         }
         if (test.timeTaken == 30) {
-          if (user.userName == currentUser.userName) {
-            uName = user.userName + " (You)";
+          if (
+            !time30.has(user.userName) ||
+            test.wpm > time30.get(user.userName)[0]
+          ) {
+            time30.set(user.userName, temp);
           }
-          temp.push(test.wpm, uName, test.date, test.accuracy);
-          time30.push(temp);
         }
         if (test.timeTaken == 60) {
-          if (user.userName == currentUser.userName) {
-            uName = user.userName + " (You)";
+          if (
+            !time60.has(user.userName) ||
+            test.wpm > time60.get(user.userName)[0]
+          ) {
+            time60.set(user.userName, temp);
           }
-          temp.push(test.wpm, uName, test.date, test.accuracy);
-          time60.push(temp);
         }
         if (test.timeTaken == 120) {
-          if (user.userName == currentUser.userName) {
-            uName = user.userName + " (You)";
+          if (
+            !time120.has(user.userName) ||
+            test.wpm > time120.get(user.userName)[0]
+          ) {
+            time120.set(user.userName, temp);
           }
-          temp.push(test.wpm, uName, test.date, test.accuracy);
-          time120.push(temp);
         }
       });
     }
   });
 
-  time15.sort((a, b) => b[0] - a[0]);
-  time30.sort((a, b) => b[0] - a[0]);
-  time60.sort((a, b) => b[0] - a[0]);
-  time120.sort((a, b) => b[0] - a[0]);
+  // Convert maps to arrays and sort by WPM in descending order
+  time15 = Array.from(time15.values()).sort((a, b) => b[0] - a[0]);
+  time30 = Array.from(time30.values()).sort((a, b) => b[0] - a[0]);
+  time60 = Array.from(time60.values()).sort((a, b) => b[0] - a[0]);
+  time120 = Array.from(time120.values()).sort((a, b) => b[0] - a[0]);
+
   dataToReturn = {
     15: time15,
     30: time30,
@@ -353,6 +367,7 @@ app.get("/leaderBoard", checkAuth, async (req, res) => {
 
   res.render("leaderBoard", { data: dataToReturn, user: currentUser });
 });
+
 // User trying to login
 app.get("/login", checkAuth, (req, res) => {
   res.render("login", { user: req.user });
